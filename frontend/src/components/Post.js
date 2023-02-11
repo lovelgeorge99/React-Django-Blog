@@ -16,7 +16,7 @@ function Post({ blog }) {
           
         </Card.Text>
         <Link to={`/post/${id}`} relative="id">
-            <h5 className='btn btn-primary'>Read fMore</h5>
+            <h5 className='btn btn-primary'>Read More</h5>
         </Link><br></br>
         <i className='fas fa-calendar-days'></i><span id='date'> Posted on 1 Jan 2023</span>
       </Card.Body>
