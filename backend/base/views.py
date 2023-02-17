@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.decorators import api_view,permission_classes
 from rest_framework.response import Response
+
+from .models import Blog,Content 
+from .serializer import BlogSerializer,ContentSerializer
 # Create your views here.
 
 
@@ -23,20 +26,20 @@ blogs=[{
             'sub_content':'fdfdfd dfd',
             'code':'this is second cdde code',
             'about_code':'about the secind <p> code code</p>',
-            'imagez':"lcaoton of image",
+            'imagez':"/images/docker.png",
             
         },
         {
             'sub_heading':'3rd Sub Headings',
             'sub_content':'paragaragh 2nd  lovel george',
-            'imagez':"lcaoton of image",
+            'imagez':"/images/docker.png",
             
         },
         {
             'sub_content':'2nd paragraph of heading 3',
             'code':'this is second cdde code',
             'about_code':'about the secind <p> code code</p>',
-            'imagez':"lcaoton of image",
+            'imagez':"/images/docker.png",
             
         },
        
@@ -69,14 +72,18 @@ blogs=[{
 
 @api_view(['GET'])
 def getBlogs(request):
-
-    return Response(blogs)
+    blogs=Blog.objects.all()
+    serializer = BlogSerializer(blogs,many=True)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 def getBlog(request,pk):
-    blog=None
+    pk=pk.replace("_"," ")
+    print(pk)
+    blog=Content.objects.get(title=pk)
+    serializer = ContentSerializer(blog,many=False)
     for i in blogs:
         if i['_id']==pk:
             blog=i
             break
-    return Response(blog)
+    return Response(serializer.data)

@@ -33,7 +33,7 @@ function BlogScreen() {
     }
     fetchBlog()
     
-  },[])
+  },[id])
  
 
   
@@ -57,9 +57,15 @@ function BlogScreen() {
             
       ))} */}
 
-{blogContent.map(content =>(
-  <SectionBlock key={content.id} {...Object.keys(content).reduce((acc, key) => ({...acc, [key]: content[key]}), {})} />
-))}
+        {blogContent.map((content,index) =>(
+          
+          <SectionBlock  key={index} {...Object.keys(content).reduce((acc, key) => ({...acc, [key]: content[key]}), {})} />
+        ))}
+
+          {/* {blogContent.map(content =>(
+          
+          <SectionBlock key={content.key} {...Object.keys(content).reduce((acc, key) => ({...acc, [key]: content[key]}), {})} />
+        ))}  */}
 
         
         
