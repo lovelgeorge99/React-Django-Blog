@@ -5,7 +5,9 @@ from rest_framework.response import Response
 
 from .models import Blog,Content 
 from .serializer import BlogSerializer,ContentSerializer
-# Create your views here.
+
+
+#Create views
 
 
 blogs=[{
