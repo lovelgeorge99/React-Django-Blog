@@ -2,7 +2,7 @@ import React from 'react'
 import CodeBlock from './CodeBlock'
 import {Row,Col,Image} from 'react-bootstrap'
 
-function SectionBlock({sub_heading,sub_content,code,about_code,imagez}) {
+function SectionBlock({sub_heading,sub_content,code,about_code,image}) {
 
   return (
     
@@ -27,10 +27,10 @@ function SectionBlock({sub_heading,sub_content,code,about_code,imagez}) {
               </Row>
       }
       
-      {!imagez ? null :
+      {!image ? null :
 
           <div>
-         <Image fluid='false' src={imagez} alt="dgfvd" />
+         <Image fluid='false' src={image} alt="dgfvd" />
          </div>
       }
       

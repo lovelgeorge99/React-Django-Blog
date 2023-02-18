@@ -1,10 +1,9 @@
 import React,{useState,useEffect} from 'react'
-import { Link,useParams } from 'react-router-dom'; 
+import { useParams } from 'react-router-dom'; 
 
-import {Image,Row,Col,Button} from 'react-bootstrap'
+import {Image,Row,Col} from 'react-bootstrap'
 
-import blogs from '../blogs'
-import CodeBlock from '../components/CodeBlock'
+
 import SectionBlock from '../components/SectionBlock';
 
 import axios from 'axios'
@@ -28,7 +27,8 @@ function BlogScreen() {
       const{data}= await axios.get(`/api/blog/${id}`);
       console.log(data)
       setBlog(data)
-      setBlogContent( data['content'])
+      // setBlogContent( data['content'])
+      setBlogContent(data)
       
     }
     fetchBlog()
@@ -43,7 +43,7 @@ function BlogScreen() {
     <div className='py-4 mx-5 justify-center'>
         <Row>
           
-          <Col> <h1>{blog.title}</h1></Col>
+          <Col> <h1>{id}</h1></Col>
           <Col lg={4}>
 
           </Col>
