@@ -7,7 +7,7 @@ from .models import Blog,Content
 from .serializer import BlogSerializer,ContentSerializer
 
 
-#Create views
+#Create views for backend api
 
 
 blogs=[{
