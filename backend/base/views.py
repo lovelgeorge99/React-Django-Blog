@@ -80,10 +80,13 @@ def getBlogs(request):
 def getBlog(request,pk):
     pk=pk.replace("_"," ")
     print(pk)
-    blog=Content.objects.get(title=pk)
-    serializer = ContentSerializer(blog,many=False)
-    for i in blogs:
-        if i['_id']==pk:
-            blog=i
-            break
+    blog=Content.objects.filter(title=pk)
+    print(blog)
+    serializer = ContentSerializer(blog,many=True)
+    print(serializer.data)
+    
+    # for i in blogs:
+    #     if i['_id']==pk:
+    #         blog=i
+    #         break
     return Response(serializer.data)

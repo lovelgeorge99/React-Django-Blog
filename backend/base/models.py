@@ -25,6 +25,7 @@ class Content(models.Model):
     about_code=models.TextField(null=True,blank=True)
     image=models.ImageField(null=True,blank=True)
     _id=models.AutoField(primary_key=True,editable=True)
+   
 
     def save(self, *args, **kwargs):
         if self.blog:
