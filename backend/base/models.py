@@ -16,7 +16,7 @@ class Blog(models.Model):
 
 
 class Content(models.Model):
-    blog=models.ForeignKey(Blog,on_delete=models.SET_NULL,null=True)
+    blog=models.ForeignKey(Blog,on_delete=models.CASCADE,null=True) #deltes content if blog is delted
     title=models.CharField(max_length=200,null=True,blank=True)
     user=models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     sub_heading=models.CharField(max_length=200,null=True,blank=True)

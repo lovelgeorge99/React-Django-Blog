@@ -85,6 +85,7 @@ def getBlog(request,pk):
     blog=Content.objects.filter(title=pk)
     print(blog)
     serializer = ContentSerializer(blog,many=True)
+    print("this is a cha gere")
     print(serializer.data)
     
     # for i in blogs:
