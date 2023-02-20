@@ -5,9 +5,15 @@ import { Link,useParams } from 'react-router-dom';
 
 
 function Post({ blog }) {
-    const id=blog.title;
-    console.log(id)
-    const nt=id.replaceAll(" ","_")
+    // const id=blog.title;
+
+    function slugify(title){
+      return title.replaceAll(" ","-")
+    }
+    console.log(blog)
+   
+    // const nt=id.replaceAll(" ","_")
+    const slug=slugify(blog.title);
   return (
     <Card border="dark" className='m-4 bg-transparent'>
       <Card.Body>
@@ -17,10 +23,10 @@ function Post({ blog }) {
         <Card.Text>
           
         </Card.Text>
-        <Link to={`/post/${nt}`} relative="id">
+        <Link to={`/post/${slug}`} relative="id">
             <h5 className='btn btn-primary'>Read More</h5>
         </Link><br></br>
-        <i className='fas fa-calendar-days'></i><span id='date'> Posted on 1 Jan 2023</span>
+        <i className='fas fa-calendar-days'></i><span id='date'>{blog.createdAt}</span>
       </Card.Body>
     </Card>
   )

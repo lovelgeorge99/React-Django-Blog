@@ -49,7 +49,7 @@ function BlogScreen() {
           </Col>
         </Row>
        
-        <Image fluid='false' src={blog.image} alt={blog.title} />
+        <Image fluid='false' src={blog.image} alt="fsfsfsf" />
 
         {/* {blogContent.map(content =>(
             <SectionBlock  {...Object.keys(content).reduce((acc, key) => ({...acc, [key]: content[key]}), {})} />
