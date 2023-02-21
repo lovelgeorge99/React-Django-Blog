@@ -1,5 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
+
+from autoslug import AutoSlugField
+
 # Create your models here.
 
 
@@ -10,6 +13,7 @@ class Blog(models.Model):
     category=models.CharField(max_length=200,null=True,blank=True)
     createdAt=models.DateTimeField(auto_now_add=True)
     _id=models.AutoField(primary_key=True,editable=False)
+    slug=AutoSlugField(populate_from='title',unique=True,null=True)
 
     def __str__(self):
         return self.title

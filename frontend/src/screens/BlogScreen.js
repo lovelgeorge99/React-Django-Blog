@@ -7,6 +7,7 @@ import {Image,Row,Col} from 'react-bootstrap'
 import SectionBlock from '../components/SectionBlock';
 
 import axios from 'axios'
+import slugify from 'react-slugify';
 
 
 
@@ -15,8 +16,11 @@ function BlogScreen() {
   // const blog = blogs.find((b)=> b._id == id)
   // console.log(blog);
   // const nestedObject = blog['content'];
-  // console.log(nestedObject)
-
+  // console.l og(nestedObject)
+  
+  // const location = useLocation();
+  // const {blogging}=location.state;
+  // console.log(blogging);
 
   const [blog,setBlog]=useState([])
   const [blogContent,setBlogContent]=useState([])
@@ -25,9 +29,12 @@ function BlogScreen() {
 
     async function fetchBlog(){
       const{data}= await axios.get(`/api/blog/${id}`);
-      console.log(data)
-      setBlog(data)
+
+      
+      setBlog(data[0])
+      console.log(blog)
       // setBlogContent( data['content'])
+
       setBlogContent(data)
       
     }
@@ -43,7 +50,7 @@ function BlogScreen() {
     <div className='py-4 mx-5 justify-center'>
         <Row>
           
-          <Col> <h1>{id}</h1></Col>
+          <Col> <h1>{blog.title}</h1></Col>
           <Col lg={4}>
 
           </Col>

@@ -12,7 +12,7 @@ function HomeScreen() {
     async function fetchBlogs(){
       const{data}= await axios.get('/api/blogs');
       setBlogs(data)
-      console.log("data")
+      // console.log("data")
     }
     fetchBlogs()
     

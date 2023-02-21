@@ -6,6 +6,8 @@ from rest_framework.response import Response
 from .models import Blog,Content 
 from .serializer import BlogSerializer,ContentSerializer
 
+from .utils.slug import slugify
+
 
 #Create views for backend api
 
@@ -80,13 +82,17 @@ def getBlogs(request):
 
 @api_view(['GET'])
 def getBlog(request,pk):
-    pk=pk.replace("_"," ")
+    #pk=pk.replace("-"," ")
     print(pk)
-    blog=Content.objects.filter(title=pk)
-    print(blog)
+    blogID=Blog.objects.get(slug=pk)# getiing id of blog from title name
+    s=BlogSerializer(blogID,many=False)# serailizeg the blodid data
+    bid=s.data['_id']
+    blog=Content.objects.filter(blog=bid) #getting blog data using blodid
+    #print(blogs)
     serializer = ContentSerializer(blog,many=True)
-    print("this is a cha gere")
-    print(serializer.data)
+    
+    #print(serializer.data)
+    print("dsd",s.data['_id'])
     
     # for i in blogs:
     #     if i['_id']==pk:

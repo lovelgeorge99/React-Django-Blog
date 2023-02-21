@@ -10,7 +10,7 @@ function Post({ blog }) {
     function slugify(title){
       return title.replaceAll(" ","-")
     }
-    console.log(blog)
+    console.log(blog.slug)
    
     // const nt=id.replaceAll(" ","_")
     const slug=slugify(blog.title);
@@ -23,8 +23,9 @@ function Post({ blog }) {
         <Card.Text>
           
         </Card.Text>
-        <Link to={`/post/${slug}`} relative="id">
-            <h5 className='btn btn-primary'>Read More</h5>
+        <Link to={`/post/${blog.slug}`} relative="id" >
+        
+            <h5  className='btn btn-primary'>Read More</h5>
         </Link><br></br>
         <i className='fas fa-calendar-days'></i><span id='date'>{blog.createdAt}</span>
       </Card.Body>
