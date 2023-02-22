@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.decorators import api_view,permission_classes
 from rest_framework.response import Response
+from rest_framework.renderers import JSONRenderer
+from rest_framework.parsers import JSONParser
 
 from .models import Blog,Content 
 from .serializer import BlogSerializer,ContentSerializer
@@ -99,3 +101,34 @@ def getBlog(request,pk):
     #         blog=i
     #         break
     return Response(serializer.data)
+
+
+@api_view(['GET'])
+def test(request,pk):
+    #pk=pk.replace("-"," ")
+    print(pk)
+    blogID=Blog.objects.get(slug=pk)# getiing id of blog from title name
+
+    s=BlogSerializer(blogID,many=False)# serailizeg the blodid data
+    print(s.data)
+    bid=s.data['_id']
+    
+    blog=Content.objects.filter(blog=bid) #getting blog data using blodid
+    #print(blogs)
+    serializer = ContentSerializer(blog,many=True)
+    
+    #print(serializer.data)
+    d={
+        "title":s.data['title'],
+        "user":s.data['user'],
+        "Content":serializer.data
+        }
+    print("dsd",d)
+    
+    # for i in blogs:
+    #     if i['_id']==pk:
+    #         blog=i
+    #         break
+    
+    
+    return Response(data={"data": serializer.data, "extra_data": d})

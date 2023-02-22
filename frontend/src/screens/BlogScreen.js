@@ -18,9 +18,7 @@ function BlogScreen() {
   // const nestedObject = blog['content'];
   // console.l og(nestedObject)
   
-  // const location = useLocation();
-  // const {blogging}=location.state;
-  // console.log(blogging);
+ 
 
   const [blog,setBlog]=useState([])
   const [blogContent,setBlogContent]=useState([])
@@ -28,14 +26,19 @@ function BlogScreen() {
   useEffect(()=>{
 
     async function fetchBlog(){
-      const{data}= await axios.get(`/api/blog/${id}`);
+
+
+      // const{data}= await axios.get(`/api/blog/${id}`);
+
+      const{data}= await axios.get(`/api/test/${id}`);
 
       
       setBlog(data[0])
-      console.log(blog)
+     // console.log("here"+blog)
       // setBlogContent( data['content'])
 
-      setBlogContent(data)
+      setBlogContent(data['data'])
+      console.log(data['extra_data'])
       
     }
     fetchBlog()
@@ -50,29 +53,27 @@ function BlogScreen() {
     <div className='py-4 mx-5 justify-center'>
         <Row>
           
-          <Col> <h1>{blog.title}</h1></Col>
+          {/* <Col> <h1>{blogContent.title}</h1></Col> */}
           <Col lg={4}>
 
           </Col>
         </Row>
        
-        <Image fluid='false' src={blog.image} alt="fsfsfsf" />
+        {/* <Image fluid='false' src={blogContent.title} alt="fsfsfsf" /> */}
 
-        {/* {blogContent.map(content =>(
-            <SectionBlock  {...Object.keys(content).reduce((acc, key) => ({...acc, [key]: content[key]}), {})} />
-           
-            
-      ))} */}
+       
+
+
 
         {blogContent.map((content,index) =>(
           
           <SectionBlock  key={index} {...Object.keys(content).reduce((acc, key) => ({...acc, [key]: content[key]}), {})} />
         ))}
 
-          {/* {blogContent.map(content =>(
-          
-          <SectionBlock key={content.key} {...Object.keys(content).reduce((acc, key) => ({...acc, [key]: content[key]}), {})} />
-        ))}  */}
+
+
+
+         
 
         
         
