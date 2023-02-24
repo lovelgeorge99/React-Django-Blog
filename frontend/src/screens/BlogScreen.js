@@ -28,17 +28,17 @@ function BlogScreen() {
     async function fetchBlog(){
 
 
-      // const{data}= await axios.get(`/api/blog/${id}`);
+      const{data}= await axios.get(`/api/blog/${id}`);
 
-      const{data}= await axios.get(`/api/test/${id}`);
+      // const{data}= await axios.get(`/api/test/${id}`);
 
       
-      setBlog(data[0])
+      setBlog(data['header'])
      // console.log("here"+blog)
       // setBlogContent( data['content'])
 
       setBlogContent(data['data'])
-      console.log(data['extra_data'])
+      console.log(data['header'])
       
     }
     fetchBlog()
@@ -53,13 +53,13 @@ function BlogScreen() {
     <div className='py-4 mx-5 justify-center'>
         <Row>
           
-          {/* <Col> <h1>{blogContent.title}</h1></Col> */}
+          <Col> <h1>{blog.title}</h1></Col>
           <Col lg={4}>
 
           </Col>
         </Row>
        
-        {/* <Image fluid='false' src={blogContent.title} alt="fsfsfsf" /> */}
+        <Image fluid='false' src={blog.titleImage} alt="fsfsfsf" />
 
        
 

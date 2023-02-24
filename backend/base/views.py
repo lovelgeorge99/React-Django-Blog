@@ -84,23 +84,39 @@ def getBlogs(request):
 
 @api_view(['GET'])
 def getBlog(request,pk):
-    #pk=pk.replace("-"," ")
-    print(pk)
-    blogID=Blog.objects.get(slug=pk)# getiing id of blog from title name
-    s=BlogSerializer(blogID,many=False)# serailizeg the blodid data
-    bid=s.data['_id']
-    blog=Content.objects.filter(blog=bid) #getting blog data using blodid
+    
+   
+    # getting blog object from Blog Table  where slug matches the pk
+    blogObject=Blog.objects.get(slug=pk)
+
+    #serializing the blog object to access its attributes
+    serialized_blogData=BlogSerializer(blogObject,many=False)
+
+    #getting blog id from serialized data
+    blogID=serialized_blogData.data['_id']
+    
+    # getting content object from Content Table  where blog id matched 
+    contentObject=Content.objects.filter(blog=blogID) 
     #print(blogs)
-    serializer = ContentSerializer(blog,many=True)
+    #serializing the content object to access its attributes
+    serialized_contentData = ContentSerializer(contentObject,many=True)
     
     #print(serializer.data)
-    print("dsd",s.data['_id'])
+    header={
+        "title":serialized_blogData.data['title'],
+        "user":serialized_blogData.data['user'],
+        "titleImage":serialized_blogData.data['titleImage']
+        
+    }
     
     # for i in blogs:
     #     if i['_id']==pk:
     #         blog=i
     #         break
-    return Response(serializer.data)
+    return Response(data={
+        "header": header,
+        "data": serialized_contentData.data
+        })
 
 
 @api_view(['GET'])
