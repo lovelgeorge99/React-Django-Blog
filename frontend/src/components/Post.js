@@ -5,15 +5,13 @@ import { Link,useParams } from 'react-router-dom';
 
 
 function Post({ blog }) {
-    // const id=blog.title;
 
-    function slugify(title){
-      return title.replaceAll(" ","-")
-    }
+
+
     console.log(blog.slug)
    
-    // const nt=id.replaceAll(" ","_")
-    const slug=slugify(blog.title);
+
+ 
   return (
     <Card border="dark" className='m-4 bg-transparent'>
       <Card.Body>

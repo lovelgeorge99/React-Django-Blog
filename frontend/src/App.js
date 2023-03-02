@@ -20,7 +20,7 @@ function App() {
         <Container>
         <Routes>
           <Route path="/" element={<HomeScreen/>} exact />
-          <Route path="/post/:id" element={<BlogScreen/>}  />
+          <Route path="/post/:slug" element={<BlogScreen/>}  />
         </Routes>
         </Container>
         

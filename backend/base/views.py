@@ -78,7 +78,7 @@ blogs=[{
 
 @api_view(['GET'])
 def getBlogs(request):
-    blogs=Blog.objects.all()
+    blogs=Blog.objects.all().order_by('-createdAt')
     serializer = BlogSerializer(blogs,many=True)
     return Response(serializer.data)
 
