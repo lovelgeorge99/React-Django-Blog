@@ -1,10 +1,25 @@
 FROM node:16-alpine
 
-WORKDIR /app/frontend/
-COPY package*.json /app/frontend/
+# Set the working directory to /app
+WORKDIR /app
 
-RUN npm install 
+# Copy package.json and package-lock.json to the container
+COPY package*.json ./
 
-COPY . /app/frontend/
+# Install dependencies
+RUN npm install --legacy-peer-deps
+RUN npm install react-scripts@5.0.1 -g 
+#RUN npm uninstall eslint-config-react-app && npm install eslint-config-react-app --save-dev
 
-CMD ["npm","start"]
+# Copy the rest of the app files to the container
+COPY . .
+
+# Build the app
+#RUN npm run build
+RUN ls /app/
+
+# Expose the port that the app runs on
+EXPOSE 3000
+
+# Start the app
+CMD [ "npm", "start" ]     
