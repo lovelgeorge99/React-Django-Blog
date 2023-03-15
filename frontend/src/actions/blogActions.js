@@ -16,7 +16,7 @@ export const listBlogs= () => async (dispatch) =>{
         
         dispatch({type:BLOG_LIST_REQUEST})
 
-        const{data}= await axios.get('/api/blogs');
+        const{data}= await axios.get('http://127.0.0.1:8000/api/blogs');
 
         dispatch({
             type:BLOG_LIST_SUCCESS,
@@ -40,7 +40,7 @@ export const listBlogContents = (slug) => async (dispatch) =>{
         
         dispatch({type:BLOG_CONTENT_REQUEST})
 
-        const{data}= await axios.get(`/api/blog/${slug}`);
+        const{data}= await axios.get(`http://127.0.0.1:8000/api/blog/${slug}`);
 
         dispatch({
             type:BLOG_CONTENT_SUCCESS,
