@@ -7,6 +7,7 @@ services:
     build: 
       context: ./backend
       dockerfile: Dockerfile
+    image: lovelgeorge/blog_backend
     
     ports:
       - '8000:8000'
@@ -19,6 +20,7 @@ services:
     build:
       context: ./frontend
       dockerfile: Dockerfile
+    image: lovelgeorge/blog_frontend
 
     ports:
       - '3000:3000'
