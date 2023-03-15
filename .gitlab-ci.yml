@@ -11,4 +11,4 @@ build:
   script:
     - docker login -u lovelgeorge -p dckr_pat_cvrX8N9zR-9hkyrRK7jsPQ7cgjU
     - docker-compose build
-    - docker-compose push
+    - docker-compose 
