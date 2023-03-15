@@ -1,0 +1,14 @@
+image: docker/compose
+
+variables: 
+  IMAGE_NAME: "react_django_blog"
+
+services:
+  - docker:20.10.16-dind
+
+build:
+  stage: build
+  script:
+    - docker login -u lovelgeorge -p dckr_pat_cvrX8N9zR-9hkyrRK7jsPQ7cgjU
+    - docker-compose build
+    - docker-compose 
