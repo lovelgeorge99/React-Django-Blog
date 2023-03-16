@@ -10,7 +10,7 @@ services:
     image: lovelgeorge/blog_backend
     
     ports:
-      - '8000:8000'
+      - '2000:2000'
 
     volumes:
       - ./backend:/app
