@@ -1,6 +1,8 @@
 import React from 'react'
 import { Spinner } from 'react-bootstrap'
 
+
+// spinner component to display when data is being  loaded
 function Loader() {
   return (
    <Spinner

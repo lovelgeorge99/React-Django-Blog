@@ -3,12 +3,12 @@ import { Card } from 'react-bootstrap'
 import { Link,useParams } from 'react-router-dom';   
 
 
-
+// Post Component for each blog for the homescreen display
 function Post({ blog }) {
 
 
 
-    console.log(blog.slug)
+  console.log(blog.slug)
    
 
  

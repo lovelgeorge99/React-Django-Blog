@@ -1,10 +1,10 @@
 import React ,{useEffect,useState}from 'react'
 import Post from '../components/Post' 
-import axios from 'axios'
+
 import Loader from '../components/Loader' 
 import Message from '../components/Message' 
 
-import { useDispatch,useSelector ,shallowEqual} from 'react-redux'
+import { useDispatch,useSelector} from 'react-redux'
 import  {listBlogs}  from '../actions/blogActions'
 
 import {Row,Col} from 'react-bootstrap'
@@ -12,12 +12,13 @@ import {Row,Col} from 'react-bootstrap'
 function HomeScreen() {
   const dispatch=useDispatch()
 
-  const blogList=useSelector(state => state.blogList,shallowEqual)
+  const blogList=useSelector(state => state.blogList)
   const {error,loading,blogs}=blogList
 
 
-  // const [blogs,setBlogs]=useState([])
+ 
   console.log("home")
+ // const [blogs,setBlogs]=useState([])
   useEffect(()=>{
 
     // async function fetchBlogs(){

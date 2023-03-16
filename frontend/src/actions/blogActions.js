@@ -11,6 +11,8 @@ import {
 } from '../constants/blogConstants'
 
 
+
+// getting all blogs by calling the api and storing in payload
 export const listBlogs= () => async (dispatch) =>{
     try{
         
@@ -35,6 +37,7 @@ export const listBlogs= () => async (dispatch) =>{
 
 
 
+// getting a single blog by calling the api and passing its slug in the api
 export const listBlogContents = (slug) => async (dispatch) =>{
     try{
         

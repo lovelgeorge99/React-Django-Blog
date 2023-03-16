@@ -2,6 +2,8 @@ import React from 'react'
 import CodeBlock from './CodeBlock'
 import {Row,Col,Image} from 'react-bootstrap'
 
+
+// calling this from Blogscreen where each section has these 5 props
 function SectionBlock({sub_heading,sub_content,code,about_code,image}) {
 
   return (
