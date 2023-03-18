@@ -25,4 +25,4 @@ RUN npm install -g server
 EXPOSE 3000
 
 # Start the app
-CMD [ "server", "-s",,"build" ]     
+CMD [ "server", "-s","build" ]     
