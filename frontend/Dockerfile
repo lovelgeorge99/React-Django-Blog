@@ -21,8 +21,8 @@ RUN ls /app/
 # Expose the port that the app runs on
 RUN npm run build
 
-RUN npm install -g server
+RUN npm install -g serve
 EXPOSE 3000
 
 # Start the app
-CMD [ "server", "-s","build" ]     
+CMD [ "serve", "-s","build" ]     
