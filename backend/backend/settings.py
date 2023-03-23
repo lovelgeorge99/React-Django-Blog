@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-vtk3$$$n7a%gy(a_^jqi-hrhn1wo-%mn2pl9sp&&u+$38ad11#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','localhost']
+ALLOWED_HOSTS = ['127.0.0.1','localhost','blogdata.lovelgeorge.ml']
 
 
 # Application definition
@@ -134,7 +134,13 @@ STATICFILES_DIRS=[
 MEDIA_ROOT='static/images'
 
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = False
+
+CORS_ALLOWED_ORIGINS=[
+    "https://box.lovelgeorge.ml",
+]
+
+
 
 
 # Default primary key field type

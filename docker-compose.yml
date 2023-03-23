@@ -30,3 +30,12 @@ services:
 
     depends_on:
       - backend
+
+
+#network,storage
+
+#duck dns
+
+#cloudflare tunnel
+
+#rsync

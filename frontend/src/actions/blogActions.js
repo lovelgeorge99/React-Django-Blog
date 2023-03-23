@@ -18,7 +18,7 @@ export const listBlogs= () => async (dispatch) =>{
         
         dispatch({type:BLOG_LIST_REQUEST})
 
-        const{data}= await axios.get('http://127.0.0.1:1000/api/blogs');
+        const{data}= await axios.get('http://127.0.0.1:5000/api/blogs');
 
         dispatch({
             type:BLOG_LIST_SUCCESS,
