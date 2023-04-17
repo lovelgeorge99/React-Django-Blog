@@ -26,9 +26,13 @@ function Header() {
              <LinkContainer to="/about">
                <Nav.Link>About</Nav.Link>
              </LinkContainer>
-             <LinkContainer to="/something" activeClassName='selectedMenuItem'>
-               <Nav.Link>Something</Nav.Link>
+             <LinkContainer to="/contact" activeClassName='selectedMenuItem'>
+               <Nav.Link>Contact</Nav.Link>
              </LinkContainer>
+             <LinkContainer to="/login" activeClassName='selectedMenuItem'>
+               <Nav.Link>Login</Nav.Link>
+             </LinkContainer>
+             <Navbar.Text></Navbar.Text>
              <Navbar.Text>
                
              </Navbar.Text>

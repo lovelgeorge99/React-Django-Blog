@@ -88,6 +88,18 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'railway',
+#         'USER': 'postgres',
+#         'PASSWORD': 'tYRX7p62qH8p954hqBSo',
+#         'HOST': 'containers-us-west-129.railway.app',
+#         'PORT': '7635',
+#     }
+# }
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -138,6 +150,8 @@ CORS_ALLOW_ALL_ORIGINS = False
 
 CORS_ALLOWED_ORIGINS=[
     "https://box.lovelgeorge.ml",
+    "http://localhost:3000",
+     
 ]
 
 
