@@ -6,13 +6,30 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 
 from .models import Blog,Content 
-from .serializer import BlogSerializer,ContentSerializer
+from .serializer import BlogSerializer,ContentSerializer,UserSerializer,UserSerializerWithToken
 
 from .utils.slug import slugify
+
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.views import TokenObtainPairView
 
 
 #Create views for backend api
 
+class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
+    def validate(self,attrs):
+        data = super().validate(attrs)
+
+        # data['username']=self.user.username
+        # data['email']=self.user.email
+        serializer=UserSerializerWithToken(self.user).data
+        for k,v in serializer.items():
+            data[k]=v
+
+        return data
+
+class MyTokenObtainPairView(TokenObtainPairView):
+    serializer_class=MyTokenObtainPairSerializer
 
 blogs=[{
         '_id':'1',
@@ -74,6 +91,12 @@ blogs=[{
         
 
     }]
+
+@api_view(['GET'])
+def getUserProfile(request):
+    user = request.user
+    serializer = UserSerializer(user,many=False)
+    return Response(serializer.data)
 
 
 @api_view(['GET'])
