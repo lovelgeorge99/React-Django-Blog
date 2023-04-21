@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 from rest_framework.decorators import api_view,permission_classes
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
@@ -10,9 +11,14 @@ from .serializer import BlogSerializer,ContentSerializer,UserSerializer,UserSeri
 
 from .utils.slug import slugify
 
+from django.contrib.auth.models import User
+
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 from rest_framework_simplejwt.views import TokenObtainPairView
 
+from django.contrib.auth.hashers import make_password
+
+from rest_framework import status
 
 #Create views for backend api
 
@@ -28,76 +34,46 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
         return data
 
+
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class=MyTokenObtainPairSerializer
 
-blogs=[{
-        '_id':'1',
-        'title':'Setup docker.io and docker-compose on linux afsa dasdasd',
-        'image':'/images/docker.png',
-        'content':[
-        {
-            'sub_heading':'About',
-            'sub_content':'Quickly install docker on Linux and run containers for diffrent service as docker images',
-            'code':'sudo apt-get update',
-            'about_code':'Update command downloads the package lists from the repositories and "updates" them to get information on the newest versions of packages and their dependencies',
-            'imagez':"/images/docker.png",
-            
-        },
-        {
-            'sub_heading':'i am alomost done',
-            'sub_content':'fdfdfd dfd',
-            'code':'this is second cdde code',
-            'about_code':'about the secind <p> code code</p>',
-            'imagez':"/images/docker.png",
-            
-        },
-        {
-            'sub_heading':'3rd Sub Headings',
-            'sub_content':'paragaragh 2nd  lovel george',
-            'imagez':"/images/docker.png",
-            
-        },
-        {
-            'sub_content':'2nd paragraph of heading 3',
-            'code':'this is second cdde code',
-            'about_code':'about the secind <p> code code</p>',
-            'imagez':"/images/docker.png",
-            
-        },
-       
-    ],
-        
-    },
-    {
-        '_id':'2',
-        'title':'Installing NPM',
-        'image':'/images/docker.png',
-        'content':[
-            {
-                'sub_heading':'About',
-                'sub_content':'Quickly install docker on Linux and run containers for diffrent service as docker images',
 
-            },
-            {
-                'sub_content':'this is the second para',
 
-            },
-            {
-                'sub_content':'this is the second para',
+@api_view(['POST'])
+def registerUser(request):
+    data=request.data
 
-            },
-        ],
-        
+    try:
+        user=User.objects.create(
+            first_name=data['name'],
+            email=data['email'],
+            username=data['email'],
+            password=make_password(data['password'])
 
-    }]
+        )
+    except:
+        message={'detail':'User with this email already exists'}
+        return Response(message,status=status.HTTP_400_BAD_REQUEST)
+    serializer=UserSerializerWithToken(user,many=False)
+
+
+    return Response(serializer.data)
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def getUserProfile(request):
     user = request.user
     serializer = UserSerializer(user,many=False)
     return Response(serializer.data)
 
+
+@api_view(['GET'])
+@permission_classes([IsAdminUser])
+def getUsers(request):
+    users=User.objects.all()
+    serializer = UserSerializer(users,many=True)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 def getBlogs(request):
