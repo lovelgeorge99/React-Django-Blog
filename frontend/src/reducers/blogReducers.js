@@ -31,8 +31,6 @@ export const blogListReducer = (state={blogs:[]},action)=>{
 }
 
 
-
-
 export const blogContentReducer = (state={blog:[]},action)=>{
     switch(action.type){
         case BLOG_CONTENT_REQUEST:

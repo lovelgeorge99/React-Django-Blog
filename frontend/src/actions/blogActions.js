@@ -28,8 +28,8 @@ export const listBlogs= () => async (dispatch) =>{
     }catch(error){
         dispatch({
             type:BLOG_LIST_FAIL,
-            payload:error.response && error.response.data.message
-            ? error.response.data.message
+            payload:error.response && error.response.data.detail 
+            ? error.response.data.detail //message
             : error.message
         })
     }
@@ -53,8 +53,8 @@ export const listBlogContents = (slug) => async (dispatch) =>{
     }catch(error){
         dispatch({
             type:BLOG_CONTENT_FAIL,
-            payload:error.response && error.response.data.message
-            ? error.response.data.message
+            payload:error.response && error.response.data.detail //message
+            ? error.response.data.detail //message
             : error.message
         })
     }
