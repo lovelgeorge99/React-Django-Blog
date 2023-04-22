@@ -1,11 +1,5 @@
-FROM  node:16-alpine
-
+FROM nikolaik/python-nodejs:python3.10-nodejs20-bullseye
 # Install Python and pip
-
-RUN apk add --no-cache python3
-
-RUN apk add --no-cache py3-pip
-
 
 COPY /frontend/package*.json ./
 RUN npm install 
@@ -13,7 +7,7 @@ RUN npm install
 WORKDIR /app
 
 COPY . .
-RUN pip install tzdata --upgrade
+#RUN pip install tzdata --upgrade
 RUN pip3 install -r backend/requirements.txt
 
 RUN python backend/manage.py makemigrations
