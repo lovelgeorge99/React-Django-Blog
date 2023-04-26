@@ -24,6 +24,8 @@ export const login =(email,password)=> async(dispatch)=>{
 
         const{data}= await axios.post(
             'http://localhost:8000/api/users/login',
+
+             // const{data}= await axios.get('http://localhost:8000/api/blogs'); 
             {'username':email,'password':password},
             config
             
@@ -65,6 +67,8 @@ export const register =(name,email,password)=> async(dispatch)=>{
 
         const{data}= await axios.post(
             'http://localhost:8000/api/users/register/',
+
+             // const{data}= await axios.get('http://localhost:8000/api/blogs'); 
             {'name':name, 'email':email,'password':password},
             config
             
