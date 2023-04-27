@@ -9,6 +9,10 @@ import {
     USER_REGISTER_REQUEST,
     USER_REGISTER_SUCCESS,
     USER_REGISTER_FAIL,
+
+    USER_DETAILS_REQUEST,
+    USER_DETAILS_SUCCESS,
+    USER_DETAILS_FAIL,
 } from '../constants/userConstants'
 
 export const login =(email,password)=> async(dispatch)=>{
@@ -88,6 +92,48 @@ export const register =(name,email,password)=> async(dispatch)=>{
     }catch(error){
         dispatch({
             type:USER_REGISTER_FAIL,
+            payload:error.response && error.response.data.detail 
+            ? error.response.data.detail //message
+            : error.message
+        })
+    }
+
+}
+
+
+export const getUserDetails =(id)=> async(dispatch,getState)=>{
+    try{
+        
+        dispatch({type:USER_DETAILS_REQUEST})
+
+        const {
+            userLogin:{userInfo},
+        }=getState()
+
+        const config={
+            headers:{
+                'Content-type':'application/json',
+                Authorization:`Bearer ${userInfo.tokken}`
+            }
+        }
+
+        const{data}= await axios.get(
+            `http://localhost:8000/api/users/${id}/`,
+
+             // const{data}= await axios.get('http://localhost:8000/api/blogs'); 
+            
+            config
+            
+            );
+
+        dispatch({
+            type:USER_DETAILS_SUCCESS,
+            payload:data
+        })
+
+    }catch(error){
+        dispatch({
+            type:USER_DETAILS_FAIL,
             payload:error.response && error.response.data.detail 
             ? error.response.data.detail //message
             : error.message
