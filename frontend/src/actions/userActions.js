@@ -55,7 +55,9 @@ export const login =(email,password)=> async(dispatch)=>{
 
 export const logout= ()=>(dispatch)=>{
     localStorage.removeItem('userInfo')
+    
     dispatch({type:USER_LOGOUT})
+
 }
 
 export const register =(name,email,password)=> async(dispatch)=>{
@@ -113,12 +115,13 @@ export const getUserDetails =(id)=> async(dispatch,getState)=>{
         const config={
             headers:{
                 'Content-type':'application/json',
-                Authorization:`Bearer ${userInfo.tokken}`
+                Authorization:`Bearer ${userInfo.token}`
+                
             }
         }
-
+       
         const{data}= await axios.get(
-            `http://localhost:8000/api/users/${id}/`,
+            `http://localhost:8000/api/users/${id}`,
 
              // const{data}= await axios.get('http://localhost:8000/api/blogs'); 
             

@@ -31,7 +31,7 @@ function ProfileScreen() {
    
     useEffect(()=>{
       if(!user){
-        // navigate('/login')
+        navigate('/login')
         console.log("fsf")
       }
       else{
@@ -61,6 +61,75 @@ function ProfileScreen() {
     <Row>
         <Col md={3}>
             <h2>User Profile</h2>
+
+            {message && <Message variant='danger'>{message}</Message>}
+      {error && <Message variant='danger'>{error}</Message>}
+      {loading && <Loader />}
+      <Form onSubmit={submitHandler}>
+
+
+      <Form.Group controlId='name'>
+          <Form.Label>Name </Form.Label>
+          <Form.Control
+            required  
+            type='name'
+            placeholder='Enter your name'
+            value={name}
+            onChange={(e)=>setName(e.target.value)}
+          >
+
+          </Form.Control>
+        </Form.Group>
+
+      <Form.Group controlId='email'>
+          <Form.Label>Email Address</Form.Label>
+          <Form.Control
+            required  
+            type='email'
+            placeholder='Enter email'
+            value={email}
+            onChange={(e)=>setEmail(e.target.value)}
+          >
+
+          </Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId='password'>
+          <Form.Label>Password</Form.Label>
+          <Form.Control
+            
+            type='password'
+            placeholder='Enter password'
+            value={password}
+            onChange={(e)=>setPassword(e.target.value)}
+          >
+
+          </Form.Control>
+        </Form.Group>
+
+
+        <Form.Group controlId='passwordConfirm'>
+          <Form.Label>Confirm Password</Form.Label>
+          <Form.Control
+            
+            type='password'
+            placeholder='Confirm password'
+            value={confirmPassword}
+            onChange={(e)=>setConfirmPassword(e.target.value)}
+          >
+
+          </Form.Control>
+        </Form.Group>
+
+        <Form.Group controlId='update'>
+        <Button type='submit' variant='primary'>
+          Update
+         </Button>
+         </Form.Group>
+
+        
+
+      </Form>
             
         </Col>
     </Row>
