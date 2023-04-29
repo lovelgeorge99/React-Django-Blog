@@ -6,7 +6,8 @@ import {Form,Buttoon,Row,Col, Button} from 'react-bootstrap'
 import Loader from '../components/Loader' 
 import Message from '../components/Message' 
 
-import {getUserDetails} from '../actions/userActions'
+import {getUserDetails,updateUserProfile} from '../actions/userActions'
+import {USER_UPDATE_PROFILE_RESET} from '../constants/userConstants'
 
 
 function ProfileScreen() {
@@ -28,22 +29,27 @@ function ProfileScreen() {
     const userLogin = useSelector(state=>state.userLogin)
     const {userInfo}=userLogin
 
-   
+    const userUpdateProfile = useSelector(state=>state.userUpdateProfile)
+    const {success}=userUpdateProfile
+
+
     useEffect(()=>{
       if(!user){
         navigate('/login')
         console.log("fsf")
       }
       else{
-        if(!user || !user.name){
+        if(!user || !user.name || success){
+           
             dispatch(getUserDetails('profile'))
+            dispatch({type:USER_UPDATE_PROFILE_RESET})
         }
         else{
             setName(user.name)
             setEmail(user.email)
         }
       }
-    },[dispatch,navigate,userInfo,user])
+    },[dispatch,navigate,userInfo,user,success])
 
     const submitHandler=(e)=>{
       e.preventDefault()
@@ -51,6 +57,13 @@ function ProfileScreen() {
         setMessage('Password Do Not Match');
       }
       else{
+        dispatch(updateUserProfile({
+          'id':user._id,
+          'name':name,
+          'email':email,
+          'password':password
+        
+        }))
        console.log("updateing")
       }
       
