@@ -40,13 +40,13 @@ function ProfileScreen() {
       }
       else{
         if(!user || !user.name || success){
-           
-            dispatch(getUserDetails('profile'))
             dispatch({type:USER_UPDATE_PROFILE_RESET})
+            dispatch(getUserDetails('profile'))
+            
         }
         else{
-            setName(user.name)
-            setEmail(user.email)
+            setName(userInfo.name)
+            setEmail(userInfo.email)
         }
       }
     },[dispatch,navigate,userInfo,user,success])
@@ -64,7 +64,7 @@ function ProfileScreen() {
           'password':password
         
         }))
-       console.log("updateing")
+       console.log("updating")
       }
       
     }
