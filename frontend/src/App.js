@@ -10,6 +10,8 @@ import BlogScreen from './screens/BlogScreen';
 import LoginScreen from './screens/LoginScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import UseListScreen from './screens/UseListScreen';
+
 
 
 function App() {
@@ -28,6 +30,7 @@ function App() {
           <Route path="/register" element={<RegisterScreen/>}  />
           <Route path="/profile" element={<ProfileScreen/>}  />
           <Route path="/post/:slug" element={<BlogScreen/>}  />
+          <Route path="/admin/userlist" element={<UseListScreen/>}  />
           
 
         </Routes>

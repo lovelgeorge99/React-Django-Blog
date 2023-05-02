@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 import { useDispatch,useSelector} from 'react-redux'
 
 import { Link,useParams,useNavigate } from 'react-router-dom'
-import {Form,Buttoon,Row,Col, Button} from 'react-bootstrap'
+import {Form,Butoon,Row,Col, Button} from 'react-bootstrap'
 import Loader from '../components/Loader' 
 import Message from '../components/Message' 
 
@@ -45,8 +45,10 @@ function ProfileScreen() {
             
         }
         else{
-            setName(userInfo.name)
-            setEmail(userInfo.email)
+            // setName(userInfo.name)
+            // setEmail(userInfo.email)
+            setName(user.name)
+            setEmail(user.email)
         }
       }
     },[dispatch,navigate,userInfo,user,success])
@@ -64,6 +66,7 @@ function ProfileScreen() {
           'password':password
         
         }))
+        setMessage('Updated');
        console.log("updating")
       }
       
@@ -75,7 +78,7 @@ function ProfileScreen() {
         <Col md={3}>
             <h2>User Profile</h2>
 
-            {message && <Message variant='danger'>{message}</Message>}
+            {message && <Message variant='success'>{message}</Message>}
       {error && <Message variant='danger'>{error}</Message>}
       {loading && <Loader />}
       <Form onSubmit={submitHandler}>
