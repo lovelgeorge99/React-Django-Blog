@@ -27,7 +27,7 @@ function Header() {
      <Container>
        <LinkContainer to="/">
         <Navbar.Brand>
-        Docs
+        Blogs
         </Navbar.Brand>
        </LinkContainer>
 
@@ -57,6 +57,23 @@ function Header() {
              <LinkContainer to="/login" activeClassName='selectedMenuItem'>
              <Nav.Link>Login</Nav.Link>
            </LinkContainer>}
+
+           {userInfo && userInfo.isAdmin && (
+                <NavDropdown title='Admin' id='adminMenu'>
+                <LinkContainer to='/admin/userlist'>
+                  <NavDropdown.Item>
+                    Users
+                  </NavDropdown.Item>
+                </LinkContainer>
+
+                <LinkContainer to='/admin/bloglist'>
+                  <NavDropdown.Item>
+                    Blog List
+                  </NavDropdown.Item>
+                </LinkContainer>
+                 
+              </NavDropdown>
+        )}
          
              <Navbar.Text></Navbar.Text>
              <Navbar.Text>
