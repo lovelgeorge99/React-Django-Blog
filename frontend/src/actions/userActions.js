@@ -43,9 +43,10 @@ export const login =(email,password)=> async(dispatch)=>{
         }
 
         const{data}= await axios.post(
-            'http://localhost:8000/api/users/login',
+            // 'http://localhost:8000/api/users/login',
+            'https://blogdata.lovelgeorge.ml/api/users/login',
 
-             // const{data}= await axios.get('http://localhost:8000/api/blogs'); 
+              
             {'username':email,'password':password},
             config
             
@@ -91,9 +92,9 @@ export const register =(name,email,password)=> async(dispatch)=>{
         }
 
         const{data}= await axios.post(
-            'http://localhost:8000/api/users/register/',
+            // 'http://localhost:8000/api/users/register/',
 
-             // const{data}= await axios.get('http://localhost:8000/api/blogs'); 
+             'https://blogdata.lovelgeorge.ml/api/users/register/',
             {'name':name, 'email':email,'password':password},
             config
             
@@ -140,9 +141,9 @@ export const getUserDetails =(id)=> async(dispatch,getState)=>{
         }
        
         const{data}= await axios.get(
-            `http://localhost:8000/api/users/${id}`,
+            // `http://localhost:8000/api/users/${id}`,
 
-             // const{data}= await axios.get('http://localhost:8000/api/blogs'); 
+            `https://blogdata.lovelgeorge.ml/api/users/${id}`,
             
             config
             
@@ -183,10 +184,11 @@ export const updateUserProfile =(user)=> async(dispatch,getState)=>{
         }
        
         const{data}= await axios.put(
-            `http://localhost:8000/api/users/profile/update/`,
+            // `http://localhost:8000/api/users/profile/update/`,
 
+            `https://blogdata.lovelgeorge.ml/api/users/profile/update/`,
 
-             // const{data}= await axios.get('http://localhost:8000/api/blogs'); 
+            
             user,
             config
             
@@ -231,8 +233,8 @@ export const listUsers =()=> async(dispatch,getState)=>{
         }
        
         const{data}= await axios.get(
-            'http://localhost:8000/api/users',
-            //'http://localhost:8000/api/users'; 
+            // 'http://localhost:8000/api/users',
+            'https://blogdata.lovelgeorge.ml/api/users',
             config
             
             );
@@ -272,8 +274,8 @@ export const deleteUser =(id)=> async(dispatch,getState)=>{
         }
        
         const{data}= await axios.delete(
-            `http://localhost:8000/api/users/delete/${id}`,
-            //'http://localhost:8000/api/users'; 
+            // `http://localhost:8000/api/users/delete/${id}`,
+            `http://blogdata.lovelgeorge.ml/api/users/delete/${id}`,
             config
             
             );
