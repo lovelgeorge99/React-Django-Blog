@@ -26,6 +26,8 @@ function Post({ blog }) {
             <h5  className='btn btn-primary'>Read More</h5>
         </Link><br></br>
         <i className='fas fa-calendar-days'></i><span id='date'>{blog.createdAt}</span>
+
+       
       </Card.Body>
     </Card>
   )

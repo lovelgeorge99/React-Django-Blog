@@ -4,7 +4,7 @@ import { useDispatch,useSelector} from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import {useNavigate } from 'react-router-dom'
 
-import {Table,Butoon,Row,Col, Button} from 'react-bootstrap'
+import {Table,Row,Col, Button} from 'react-bootstrap'
 import Loader from '../components/Loader' 
 import Message from '../components/Message' 
 
@@ -41,7 +41,7 @@ function UseListScreen() {
             dispatch(deleteUser(id))
         }
         
-        console.log('delete',id)
+        // console.log('delete',id)
     }
   return (
     <div>
